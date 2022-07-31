@@ -2,7 +2,9 @@ package com.tourist.Controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,5 +36,10 @@ public class TouristController {
 	public Tourist createTourist(@RequestBody Tourist tourists)
 	{
 		return repo.save(tourists);
+	}
+	@GetMapping("/firstName")
+	public List<Tourist> findByFirstName(String firstName,Sort sort)
+	{
+		return repo.findAll(Sort.by(Sort.Direction.DESC, "firstName"));
 	}
 }
